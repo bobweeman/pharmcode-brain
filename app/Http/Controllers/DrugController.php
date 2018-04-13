@@ -15,6 +15,8 @@ class DrugController extends Controller
     public function index()
     {
         //
+        $drug = Drug::latest()->paginate(20);
+        return response(json(compact('drugs')),200);
     }
 
     /**
@@ -36,6 +38,8 @@ class DrugController extends Controller
     public function store(Request $request)
     {
         //
+        Drug::create($request->all());
+        return response('New drug created successfully',200);
     }
 
     /**
@@ -47,6 +51,7 @@ class DrugController extends Controller
     public function show(Drug $drug)
     {
         //
+        return response(compact('drug'),200);
     }
 
     /**
@@ -58,6 +63,7 @@ class DrugController extends Controller
     public function edit(Drug $drug)
     {
         //
+        return response(compact('drug'),200);
     }
 
     /**
@@ -70,6 +76,8 @@ class DrugController extends Controller
     public function update(Request $request, Drug $drug)
     {
         //
+        Drug::update($request->all(),$drug);
+        return response('drug\'s data updated successfully',200);
     }
 
     /**
@@ -81,5 +89,7 @@ class DrugController extends Controller
     public function destroy(Drug $drug)
     {
         //
+        Drug::destroy($drug);
+        return response('Drug deleted successfully',200);
     }
 }

@@ -14,10 +14,10 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $stocks = Stock::latest()->paginate(20);
+        return response(compact('stocks'),200);
     }
-
-    /**
+            /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -35,7 +35,8 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Stock::create($request->all());
+        return response('New stock created successfully',200);
     }
 
     /**
@@ -46,7 +47,7 @@ class StockController extends Controller
      */
     public function show(Stock $stock)
     {
-        //
+        return response(compact('stock'),200);
     }
 
     /**
@@ -57,7 +58,7 @@ class StockController extends Controller
      */
     public function edit(Stock $stock)
     {
-        //
+        return response(json(compact('stock')),200);
     }
 
     /**
@@ -69,7 +70,8 @@ class StockController extends Controller
      */
     public function update(Request $request, Stock $stock)
     {
-        //
+        Stock::update($request->all(),$stock);
+        return response('stock\'s data updated successfully',200);
     }
 
     /**
@@ -80,6 +82,7 @@ class StockController extends Controller
      */
     public function destroy(Stock $stock)
     {
-        //
+        Stock::destroy($stock);
+        return response('stock deleted successfully',200);
     }
 }

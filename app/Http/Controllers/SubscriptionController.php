@@ -15,6 +15,8 @@ class SubscriptionController extends Controller
     public function index()
     {
         //
+        $subscriptions = Subscription::latest()->paginate(20);
+        return response(compact('subscriptions'),200);
     }
 
     /**
@@ -36,6 +38,8 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         //
+        Subscription::create($request->all());
+        return response('New subscription created successfully',200);
     }
 
     /**
@@ -47,6 +51,7 @@ class SubscriptionController extends Controller
     public function show(Subscription $subscription)
     {
         //
+        return response(compact('subscription'),200);
     }
 
     /**
@@ -58,6 +63,7 @@ class SubscriptionController extends Controller
     public function edit(Subscription $subscription)
     {
         //
+        return response(compact('subscription'),200);
     }
 
     /**
@@ -70,6 +76,8 @@ class SubscriptionController extends Controller
     public function update(Request $request, Subscription $subscription)
     {
         //
+        Subscription::update($request->all(),$subscription);
+        return response('subscription\'s data updated successfully',200);
     }
 
     /**
@@ -81,5 +89,7 @@ class SubscriptionController extends Controller
     public function destroy(Subscription $subscription)
     {
         //
+        Subscription::destroy($subscription);
+        return response('Subscription deleted successfully',200);
     }
 }

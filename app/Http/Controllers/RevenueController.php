@@ -14,7 +14,8 @@ class RevenueController extends Controller
      */
     public function index()
     {
-        //
+        $revenues = Revenue::latest()->paginate(20);
+        return response(compact('revenue'),200);
     }
 
     /**
@@ -35,7 +36,8 @@ class RevenueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Revenue::create($request->all());
+        return response('New Revenue created successfully',200);
     }
 
     /**
@@ -46,7 +48,7 @@ class RevenueController extends Controller
      */
     public function show(Revenue $revenue)
     {
-        //
+        return response(compact('revenue'),200);
     }
 
     /**
@@ -57,7 +59,7 @@ class RevenueController extends Controller
      */
     public function edit(Revenue $revenue)
     {
-        //
+        return response(compact('revenue'),200);
     }
 
     /**
@@ -70,6 +72,8 @@ class RevenueController extends Controller
     public function update(Request $request, Revenue $revenue)
     {
         //
+        Revenue::update($request->all(),$revenue);
+        return response('revenue\'s data updated successfully',200);
     }
 
     /**
@@ -81,5 +85,7 @@ class RevenueController extends Controller
     public function destroy(Revenue $revenue)
     {
         //
+        Revenue::destroy($revenue);
+        return response('Revenue deleted successfully',200);
     }
 }

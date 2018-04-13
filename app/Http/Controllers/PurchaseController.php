@@ -14,7 +14,8 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        $purchases = Purchase::latest()->paginate(20);
+        return response(compact('purchases'),200);
     }
 
     /**
@@ -35,7 +36,8 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Purchase::create($request->all());
+        return response('New purchase created successfully',200);
     }
 
     /**
@@ -46,7 +48,7 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        return response(json(compact('purchase')),200);
     }
 
     /**
@@ -57,7 +59,7 @@ class PurchaseController extends Controller
      */
     public function edit(Purchase $purchase)
     {
-        //
+        return response(json(compact('purchase')),200);
     }
 
     /**
@@ -69,7 +71,8 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, Purchase $purchase)
     {
-        //
+        Purchase::update($request->all(),$purchase);
+        return response(json('purchase\'s data updated successfully'),200);
     }
 
     /**
@@ -80,6 +83,7 @@ class PurchaseController extends Controller
      */
     public function destroy(Purchase $purchase)
     {
-        //
+        Purchase::destroy($purchase);
+        return response('Purchase deleted successfully',200);
     }
 }

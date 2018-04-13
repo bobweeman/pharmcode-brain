@@ -15,6 +15,8 @@ class UserDetailController extends Controller
     public function index()
     {
         //
+        $userdetail = Userdetail::latest()->paginate(20);
+        return response(compact('userdetail'),200);
     }
 
     /**
@@ -36,6 +38,8 @@ class UserDetailController extends Controller
     public function store(Request $request)
     {
         //
+        Userdetail::create($request->all());
+        return response('New userdetail created successfully',200);
     }
 
     /**
@@ -47,6 +51,7 @@ class UserDetailController extends Controller
     public function show(UserDetail $userDetail)
     {
         //
+        return response(compact('userdetail'),200);
     }
 
     /**
@@ -58,6 +63,7 @@ class UserDetailController extends Controller
     public function edit(UserDetail $userDetail)
     {
         //
+        return response(compact('userdetail'),200);
     }
 
     /**
@@ -70,6 +76,9 @@ class UserDetailController extends Controller
     public function update(Request $request, UserDetail $userDetail)
     {
         //
+
+        Userdetail::update($request->all(),$userdetail);
+        return response('userdetail\'s data updated successfully',200);
     }
 
     /**
@@ -81,5 +90,7 @@ class UserDetailController extends Controller
     public function destroy(UserDetail $userDetail)
     {
         //
+        Userdetail::destroy($userDetail);
+        return response('Userdetail deleted successfully',200);
     }
 }

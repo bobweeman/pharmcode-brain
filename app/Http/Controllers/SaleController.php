@@ -15,6 +15,8 @@ class SaleController extends Controller
     public function index()
     {
         //
+        $sale = Sale::latest()->paginate(20);
+        return response(compact('sale'),200);
     }
 
     /**
@@ -25,6 +27,7 @@ class SaleController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -36,6 +39,8 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         //
+        Sale::create($request->all());
+        return response('New sale created successfully',200);
     }
 
     /**
@@ -47,6 +52,7 @@ class SaleController extends Controller
     public function show(Sale $sale)
     {
         //
+        return response(compact('sale'),200);
     }
 
     /**
@@ -58,6 +64,7 @@ class SaleController extends Controller
     public function edit(Sale $sale)
     {
         //
+        return response(compact('sale'),200);
     }
 
     /**
@@ -70,6 +77,8 @@ class SaleController extends Controller
     public function update(Request $request, Sale $sale)
     {
         //
+        Sale::update($request->all(),$sale);
+        return response('sale\'s data updated successfully',200);
     }
 
     /**
@@ -81,5 +90,7 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         //
+        Sale::destroy($sale);
+        return response('Sale deleted successfully',200);
     }
 }

@@ -15,6 +15,8 @@ class DrugCategoryController extends Controller
     public function index()
     {
         //
+        $drugcategories = DrugCategory::latest()->paginate(20);
+        return response(compact('drugcategories'),200);
     }
 
     /**
@@ -36,6 +38,8 @@ class DrugCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        DrugCategory::create($request->all());
+        return response('New Category created successfully',200);
     }
 
     /**
@@ -47,6 +51,7 @@ class DrugCategoryController extends Controller
     public function show(DrugCategory $drugCategory)
     {
         //
+        return response(compact('drugcategory'),200);
     }
 
     /**
@@ -58,6 +63,7 @@ class DrugCategoryController extends Controller
     public function edit(DrugCategory $drugCategory)
     {
         //
+        return response(compact('DrugCategory'), 200);
     }
 
     /**
@@ -70,6 +76,8 @@ class DrugCategoryController extends Controller
     public function update(Request $request, DrugCategory $drugCategory)
     {
         //
+        DrugCategory::update($request->all(),$drugCategory);
+        return response('category\'s data updated successfully',200);
     }
 
     /**
@@ -81,5 +89,7 @@ class DrugCategoryController extends Controller
     public function destroy(DrugCategory $drugCategory)
     {
         //
+        DrugCategory::destroy($drugCategory);
+        return response('DrugCategory deleted successfully',200);
     }
 }

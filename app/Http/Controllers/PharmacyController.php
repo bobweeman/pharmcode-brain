@@ -15,6 +15,8 @@ class PharmacyController extends Controller
     public function index()
     {
         //
+        $pharmacy = Doctor::latest()->paginate(20);
+        return response(compact('pharmacies'),200);
     }
 
     /**
@@ -36,6 +38,8 @@ class PharmacyController extends Controller
     public function store(Request $request)
     {
         //
+        Pharmacy::create($request->all());
+        return response('New pharmacy created successfully',200);
     }
 
     /**
@@ -47,6 +51,7 @@ class PharmacyController extends Controller
     public function show(Pharmacy $pharmacy)
     {
         //
+        return response(compact('pharmacy'),200);
     }
 
     /**
@@ -58,6 +63,7 @@ class PharmacyController extends Controller
     public function edit(Pharmacy $pharmacy)
     {
         //
+        return response(compact('pharmacy'),200);
     }
 
     /**
@@ -70,6 +76,8 @@ class PharmacyController extends Controller
     public function update(Request $request, Pharmacy $pharmacy)
     {
         //
+        Pharmacy::update($request->all(),$pharmacy);
+        return response('pharmacy\'s data updated successfully',200);
     }
 
     /**
@@ -81,5 +89,7 @@ class PharmacyController extends Controller
     public function destroy(Pharmacy $pharmacy)
     {
         //
+        Pharmacy::destroy($pharmacy);
+        return response('Pharmacy deleted successfully',200);
     }
 }
