@@ -15,6 +15,12 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('pharm_id');
+            $table->integer('drug_id');
+            $table->integer('quantity');
+            $table->float('price');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

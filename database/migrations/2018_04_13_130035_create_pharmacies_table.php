@@ -15,6 +15,16 @@ class CreatePharmaciesTable extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->string('pharm_name');
+            $table->integer('phone');
+            $table->string('email')->unique();
+            $table->string('address');
+            $table->string('website_url');
+            $table->float('longitude');
+            $table->float('latitude');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

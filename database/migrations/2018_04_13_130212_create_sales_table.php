@@ -15,6 +15,14 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('pharm_id');
+            $table->integer('user_id');
+            $table->integer('drug_id');
+            $table->integer('quantity');
+            $table->date('date');
+            $table->string('payment_status');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

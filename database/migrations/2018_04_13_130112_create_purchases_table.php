@@ -15,6 +15,12 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('drug_id');
+            $table->string('drug_name');
+            $table->string('dosage');
+            $table->string('quantity');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

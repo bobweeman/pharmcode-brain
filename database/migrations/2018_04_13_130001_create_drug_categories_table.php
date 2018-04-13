@@ -15,6 +15,10 @@ class CreateDrugCategoriesTable extends Migration
     {
         Schema::create('drug_categories', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+
+            $table->softDeletes();
+          
             $table->timestamps();
         });
     }

@@ -15,6 +15,11 @@ class CreateRevenuesTable extends Migration
     {
         Schema::create('revenues', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('subscription');
+            $table->float('amount');
+            $table->string('date');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
