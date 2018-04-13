@@ -17,4 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware'=>'auth'], function(){
+    //endpoint to create tokens
+    Route::get('produceTokens', function(){
+        return view('tokens');
+    });
+});
