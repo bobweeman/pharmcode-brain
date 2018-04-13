@@ -21,8 +21,6 @@ Route::resource('/pharmacy', 'PharmacyController');
 
 Route::resource('/drug', 'DrugController');
 
-Route::resource('/doctor', 'DoctorController');
-
 Route::resource('/purchase', 'PurchaseController');
 
 Route::resource('/revenue', 'RevenueController');
