@@ -32,3 +32,10 @@ Route::resource('/stock', 'StockController');
 Route::resource('/subscription', 'SubscriptionController');
 
 Route::resource('/userdetail', 'UserDetailController');
+
+
+Route::post('user_registration',function(Request $request){
+    \App\User::create($request->only(['name','email','password']));
+    $message='User created successfully';
+    return response(compact('message'),200);
+});

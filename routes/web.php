@@ -24,3 +24,6 @@ Route::group(['middleware'=>'auth'], function(){
         return view('tokens');
     });
 });
+
+
+
