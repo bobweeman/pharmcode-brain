@@ -35,7 +35,11 @@ Route::resource('/userdetail', 'UserDetailController');
 
 
 Route::post('user_registration',function(Request $request){
-    \App\User::create($request->only(['name','email','password']));
+    $user = new \App\User();
+    $user->name=$request->name;
+    $user->email=$request->email;
+    $user->password=bcrypt($request->password);
+    $user->save();
     $message='User created successfully';
     return response(compact('message'),200);
 });
