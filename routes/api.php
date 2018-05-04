@@ -43,3 +43,10 @@ Route::post('user_registration',function(Request $request){
     $message='User created successfully';
     return response(compact('message'),200);
 });
+
+//Checking user pharmacy status
+Route::get('check_pharmacy', function (Request $request){
+    $data = \App\Pharmacy::where('user_id',$request->id.'%')->get();
+    return response()->json(compact('data'),200);
+});
+
