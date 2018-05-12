@@ -49,9 +49,9 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function show(Sale $sale)
+    public function show($id)
     {
-        //
+        $sale = Sale::find($id)->first();
         return response(compact('sale'),200);
     }
 

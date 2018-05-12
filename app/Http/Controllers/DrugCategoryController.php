@@ -48,9 +48,9 @@ class DrugCategoryController extends Controller
      * @param  \App\DrugCategory  $drugCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(DrugCategory $drugCategory)
+    public function show($id)
     {
-        //
+        $drugcategory = DrugCategory::find($id)->first();
         return response(compact('drugcategory'),200);
     }
 

@@ -48,9 +48,9 @@ class UserDetailController extends Controller
      * @param  \App\UserDetail  $userDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(UserDetail $userDetail)
+    public function show($id)
     {
-        //
+        $userdetail = UserDetail::find($id)->first();
         return response(compact('userdetail'),200);
     }
 

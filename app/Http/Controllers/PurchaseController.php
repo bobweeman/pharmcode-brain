@@ -46,8 +46,9 @@ class PurchaseController extends Controller
      * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function show(Purchase $purchase)
+    public function show(Purchase $purchase, $id)
     {
+        $purchase = Purchase::find($id)->first();
         return response(json(compact('purchase')),200);
     }
 

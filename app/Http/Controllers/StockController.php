@@ -45,8 +45,9 @@ class StockController extends Controller
      * @param  \App\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function show(Stock $stock)
+    public function show($id)
     {
+        $stock = Stock::find($id)->first();
         return response(compact('stock'),200);
     }
 

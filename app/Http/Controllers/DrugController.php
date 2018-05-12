@@ -48,9 +48,10 @@ class DrugController extends Controller
      * @param  \App\Drug  $drug
      * @return \Illuminate\Http\Response
      */
-    public function show(Drug $drug)
+    public function show($id)
     {
         //
+        $drug = Drug::find($id)->first();
         return response(compact('drug'),200);
     }
 

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'access_level', 'email', 'password',
     ];
 
     /**
@@ -27,4 +27,32 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Setting data mutators
+    protected $dates=[
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
+    //Mutators for setting password
+    public function setPasswordAttribute($value){
+        $this->attributes['password']=bcrypt($value);
+    }
+
+    //Accessor for date created field
+    public function getCreatedAttribute($value){
+        return $this->attributes["created_at"]=Carbon::parse($value)->diffForHumans();
+    }
+
+
+    //relation of user to user details
+    public function userDetails(){
+        return $this->hasOne(UserDetail::class);
+    }
+
+    //relation of user to purchase
+    public function purchase(){
+        return $this->hasMany(Purchase::class);
+    }
 }
