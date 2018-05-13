@@ -45,7 +45,7 @@ Route::post('user_registration',function(Request $request){
     $user = new \App\User();
     $user->name=$request->name;
     $user->email=$request->email;
-    $user->password=bcrypt($request->password);
+    $user->password=$request->password;
     $user->save();
     $message='User created successfully';
     return response(compact('message'),200);
