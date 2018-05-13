@@ -48,9 +48,10 @@ class SubscriptionController extends Controller
      * @param  \App\Subscription  $subscription
      * @return \Illuminate\Http\Response
      */
-    public function show(Subscription $subscription)
+    public function show($id)
     {
         //
+        $subscription = Subscription::find($id)->first();
         return response(compact('subscription'),200);
     }
 

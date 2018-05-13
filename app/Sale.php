@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    //
-
     protected $fillable = [
         'pharm_id', 'user_id', 'drug_id', 'quantity', 'date', 'payment_status'
     ];

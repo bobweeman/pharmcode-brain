@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $user = User::latest()->paginate(20);
+        $users = User::latest()->paginate(20);
         return response(compact('users'),200);
     }
 
@@ -50,6 +51,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $user = User::find($id)->first();
         return response(compact('user'),200);
     }
 
@@ -74,9 +76,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        User::update($request->all(),$user);
-        return response('user\'s data updated successfully',200);
+
     }
 
     /**

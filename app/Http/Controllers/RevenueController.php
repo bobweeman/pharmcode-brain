@@ -46,8 +46,9 @@ class RevenueController extends Controller
      * @param  \App\Revenue  $revenue
      * @return \Illuminate\Http\Response
      */
-    public function show(Revenue $revenue)
+    public function show(Revenue $revenue, $id)
     {
+        $revenue = Request::find($id)->first();
         return response(compact('revenue'),200);
     }
 

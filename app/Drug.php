@@ -8,16 +8,16 @@ class Drug extends Model
 {
     //
     protected $fillable = [
-        'name', 'type', 'composition', 'description', 'dosage', 'image_url', 'expiration_date'
+        'name', 'type', 'composition', 'description', 'dosage', 'image_url', 'expiration_date', 'drug_category'
     ];
 
     // relation of drugs to stock
     public function stock(){
-        return $this->hasOne(Stock::class);
+        return $this->belongsToMany(Stock::class);
     }
 
-    //relation of drugs to drugcategory
+    //relation of drugs to drug category
     public function drugCategory(){
-        return $this->hasMany(DrugCategory::class);
+        return $this->hasOne(DrugCategory::class);
     }
 }

@@ -48,9 +48,9 @@ class PharmacyController extends Controller
      * @param  \App\Pharmacy  $pharmacy
      * @return \Illuminate\Http\Response
      */
-    public function show(Pharmacy $pharmacy)
+    public function show(Pharmacy $pharmacy, $id)
     {
-        //
+        $pharmacy = Pharmacy::find($id)->first();
         return response(compact('pharmacy'),200);
     }
 

@@ -11,8 +11,18 @@ class DrugCategory extends Model
         'name'
     ];
 
-    //relation of drug to drug category
-    public function drug(){
-        return $this->belongsTo(Drug::class);
+
+    protected $appends = [
+        'memberCount'
+    ];
+
+    //creating relationships
+    public function drugs(){
+        return $this->hasManyThrough(Drug::class,'drug_category','id');
     }
+
+    public function getMemberCountAttribute(){
+        return $this->members()->count();
+    }
+
 }
